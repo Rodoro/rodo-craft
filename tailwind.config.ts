@@ -1,3 +1,4 @@
+import { COLORS } from "./src/constants/colors.constants";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,6 +10,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: COLORS,
+      fontFamily: {
+          'rubik': ['var(--font-rubik)'],
+          'guy': ['var(--font-guy)'],
+          'inter': ['var(--font-inter)'],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

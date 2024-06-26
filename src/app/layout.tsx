@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik, Luckiest_Guy, Inter } from 'next/font/google'
 import "./globals.css";
+import { Navbar } from "@/containers/layout/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: "600",
+  variable: '--font-inter',
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: "900",
+  variable: '--font-rubik',
+});
+
+const guy = Luckiest_Guy({
+  subsets: ["latin"],
+  weight: "400",
+  variable: '--font-guy',
+});
 
 export const metadata: Metadata = {
   title: "RodoCraft",
@@ -16,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={rubik.variable + " " + guy.variable + " " + inter.variable}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
