@@ -4,6 +4,7 @@ import { ButtonCircle } from "@/components/interface/Buttons";
 import { NAV_BAR_PAGE } from "@/configs/pages-url.config";
 import Link from "next/link";
 
+// TODO:ВЫнести в types
 export interface IMenuItem {
   link: string;
   name: string;
