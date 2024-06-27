@@ -4,6 +4,7 @@ export interface IField {
     label: string;
     type: string;
     placeholder?: string;
+    autoComplete?: string;
 }
 
 export const Field = forwardRef<HTMLInputElement, IField>(({ label, type, placeholder, ...rest }, ref) => {

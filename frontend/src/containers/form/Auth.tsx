@@ -68,6 +68,7 @@ export function RegForm() {
                 <Field
                     label={"Password *"}
                     type={"password"}
+                    autoComplete="password"
                     placeholder={"Enter Your Password"}
                     {...register('password', {
                         required: 'Password is required!'
