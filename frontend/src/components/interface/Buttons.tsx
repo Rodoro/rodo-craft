@@ -11,3 +11,11 @@ export function ButtonCircle({ className, children, ...props }: PropsWithChildre
         </button>
     )
 }
+// TODO:АнимАЦИИ
+export function ButtonGreen({ className, children, ...props }: PropsWithChildren<IButton>) {
+    return (
+        <button {...props} className={className + " bg-primary300 active:opacity-70 active:shadow-none cursor-pointer rounded-3xl transition-all"} style={{boxShadow: "0 0 17px -4px #0cc888"}}>
+            {children}
+        </button>
+    )
+}

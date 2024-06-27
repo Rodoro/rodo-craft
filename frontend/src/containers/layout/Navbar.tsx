@@ -40,8 +40,8 @@ export function ItemMenu({ item }: { item: IMenuItem }) {
 export function Navbar() {
   return (
     // TODO: Адпатация
-    <nav className = "fixed bg-[#404250]/[.70] h-[102px] w-full flex flex-row justify-around items-center max-w-[1787px] right-0 left-0 m-auto"
-      style = {{ backdropFilter: "blur(16px)", boxShadow: "0 2px 25px 4px rgba(0, 0, 0, 0.25)"}}>
+    <nav className="fixed bg-[#404250]/[.70] h-[102px] w-full flex flex-row justify-around items-center max-w-[1787px] right-0 left-0 m-auto z-50"
+      style={{ backdropFilter: "blur(16px)", boxShadow: "0 2px 25px 4px rgba(0, 0, 0, 0.25)" }}>
       <LogoAndName />
       <div className="flex flex-row items-center justify-between gap-8">
         {MENU.map(item => (
@@ -50,10 +50,11 @@ export function Navbar() {
       </div>
       <div className="flex flex-row justify-end items-center min-w-[200px]">
         {/* TODO: Анимацию пинга при простои и при наведении скейл */}
-          <ButtonCircle>
-            {/* TODO: Разобратся с окном авторизации */}
+        <ButtonCircle>
+          <Link href={NAV_BAR_PAGE.LOGIN}>
             <LoginIcon />
-          </ButtonCircle>
+          </Link>
+        </ButtonCircle>
       </div>
     </nav >
   )
