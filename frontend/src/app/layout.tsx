@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rubik, Luckiest_Guy, Inter } from 'next/font/google'
 import "./globals.css";
 import { Navbar } from "@/containers/layout/Navbar";
+import { Providers } from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.variable + " " + guy.variable + " " + inter.variable}>
-        <Navbar />
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

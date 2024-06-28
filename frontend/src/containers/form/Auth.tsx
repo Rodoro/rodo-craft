@@ -1,8 +1,11 @@
 'use client'
 import { ButtonGreen } from "@/components/interface/Buttons";
 import { Field } from "@/components/interface/Field";
+import { authService } from "@/services/auth/auth.services";
 import { IRegForm } from "@/types/auth.types";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export function LoginForm() {
@@ -29,12 +32,25 @@ export function LoginForm() {
 }
 
 export function RegForm() {
-    const { register, handleSubmit } = useForm<IRegForm>({
+    const { register, handleSubmit, reset } = useForm<IRegForm>({
         mode: 'onChange'
     })
 
+    const {push} = useRouter()
+
+    const { mutate } = useMutation({
+        mutationKey: ['reg'],
+        mutationFn: ( data:IRegForm) => 
+            authService.main('registration', data),
+            onSuccess() {
+                reset()
+                push('/')
+            }
+    })
+    // TODO:Сылки в конфиг
+
     const onSubmit: SubmitHandler<IRegForm> = (data) => {
-        console.log(data)
+        mutate(data)
     }
 
     return (
