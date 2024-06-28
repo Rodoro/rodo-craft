@@ -21,4 +21,6 @@ export class AuthController {
     registration(@Body() userDto: CreateUserDto) {
         return this.authService.registration(userDto)
     }
+
+    //TODO: Реализовать logout refrech и system refresf tokens
 }

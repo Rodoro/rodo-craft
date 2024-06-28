@@ -1,14 +1,20 @@
+import Link from "next/link";
 import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
 }
 
-export function ButtonCircle({ className, children, ...props }: PropsWithChildren<IButton>) {
+export interface IButtonUrl {
+    className?: string;
+    url: string;
+}
+
+export function ButtonCircleUrl({ url, className, children, ...props }: PropsWithChildren<IButtonUrl>) {
     return (
-        <button {...props} className={className + " p-3 border-[3px] rounded-full border-white/40 cursor-pointer"}>
+        <Link href={url} {...props} className={className + " p-3 border-[3px] rounded-full border-white/40 cursor-pointer"}>
             {children}
-        </button>
+        </Link>
     )
 }
 // TODO:АнимАЦИИ

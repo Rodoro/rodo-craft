@@ -1,6 +1,6 @@
 import { LogoAndName } from "@/components/common/Logo";
 import { LoginIcon } from "@/components/icons/Login";
-import { ButtonCircle } from "@/components/interface/Buttons";
+import { ButtonCircleUrl } from "@/components/interface/Buttons";
 import { NAV_BAR_PAGE } from "@/configs/pages-url.config";
 import Link from "next/link";
 
@@ -50,11 +50,9 @@ export function Navbar() {
       </div>
       <div className="flex flex-row justify-end items-center min-w-[200px]">
         {/* TODO: Анимацию пинга при простои и при наведении скейл */}
-        <ButtonCircle>
-          <Link href={NAV_BAR_PAGE.LOGIN}>
-            <LoginIcon />
-          </Link>
-        </ButtonCircle>
+        <ButtonCircleUrl url={NAV_BAR_PAGE.LOGIN} >
+          <LoginIcon />
+        </ButtonCircleUrl>
       </div>
     </nav >
   )
