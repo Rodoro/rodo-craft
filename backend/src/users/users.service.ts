@@ -1,10 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './users.schema';
+import { User, UserDocument } from './users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Model } from 'mongoose';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -43,6 +44,19 @@ export class UsersService {
             return dto;
         }
         throw new BadRequestException('Пользователь или роль не найдены');
+    }
+
+    async findById(id: string): Promise<UserDocument> {
+        return this.userRepository.findById(id).populate('roles', '-users');
+    }
+
+    async update(
+        id: string,
+        updateUserDto: UpdateUserDto,
+    ): Promise<User> {
+        return this.userRepository
+            .findByIdAndUpdate(id, updateUserDto, { new: true }).populate('roles', '-users')
+            .exec();
     }
 
 }

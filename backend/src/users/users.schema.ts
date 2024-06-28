@@ -37,6 +37,9 @@ export class User {
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role'}]})
     roles: Role[]
 
+    @Prop()
+    refreshToken: string;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)

@@ -3,18 +3,19 @@ import { UsersModule } from 'src/users/users.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
+import { AccessTokenStrategy } from './strategies/accessToken.strategy';
+import { RefreshTokenStrategy } from './strategies/refreshToken.strategy';
 
 @Module({
     controllers: [AuthController],
-    providers: [AuthService],
+    providers: [
+        AuthService,
+        AccessTokenStrategy,
+        RefreshTokenStrategy
+    ],
     imports: [
         forwardRef(() => UsersModule),
-        JwtModule.register({
-            secret: process.env.JWT_SECRET || 'SECRET_dfdksdofspkvmm',
-            signOptions: {
-                expiresIn: '24h'
-            }
-        })
+        JwtModule.register({})
     ],
     exports: [
         AuthService,

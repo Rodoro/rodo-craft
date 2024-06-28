@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
@@ -16,6 +16,7 @@ export class RolesController {
     @ApiResponse({status: 201, type: [Role]})
     @Roles('OWNER')
     @UseGuards(RolesGuard)
+    @UsePipes(ValidationPipe)
     @Post()
     create(@Body() dto: CreateRoleDto) {
         return this.roleService.createRole(dto);
@@ -25,6 +26,7 @@ export class RolesController {
     @ApiResponse({status: 200, type: [Role]})
     @Roles('ADMIN', 'OWNER')
     @UseGuards(RolesGuard)
+    @UsePipes(ValidationPipe)
     @Get('/:value')
     getByValue(@Param('value') value: string) {
         return this.roleService.getRoleByValue(value);

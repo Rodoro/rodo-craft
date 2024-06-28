@@ -32,4 +32,6 @@ export class CreateUserDto {
     @IsString({ message: 'String expected' })
     @IsNotEmpty({ message: 'This is required field' })
     public readonly password: string;
+
+    public readonly refreshToken?: string;
 }
