@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UsePipes } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -25,10 +25,9 @@ export class AuthController {
         return this.authService.registration(userDto)
     }
 
-    @UsePipes(ValidationPipe)
-    @Get('logout')
-    logout(@Req() req: Request) {
-        this.authService.logout(req.user['sub']);
+    @Get('logout/:id')
+    logout(@Param('id') id: string) {
+        this.authService.logout(id);
     }
 
     @UsePipes(ValidationPipe)

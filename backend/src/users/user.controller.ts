@@ -26,7 +26,7 @@ export class UserController {
 
     @ApiOperation({summary: 'Получить список'})
     @ApiResponse({status: 200, type: [User]})
-    @Roles('ADMIN', 'OWNER')
+    @Roles('ADMIN', 'OWNER', 'USER')
     @UseGuards(RolesGuard)
     @UsePipes(ValidationPipe)
     @Get()

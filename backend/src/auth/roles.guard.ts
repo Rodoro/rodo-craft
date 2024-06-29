@@ -38,8 +38,7 @@ export class RolesGuard implements CanActivate {
             req.user = user;
             return user.roles.some(role => requiredRoles.includes(role.value));
         } catch (e) {
-            console.log(e)
-            throw new HttpException('There is no access', HttpStatus.FORBIDDEN)
+            throw new UnauthorizedException({ message: 'jwt expired' })
         }
     }
 

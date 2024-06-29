@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -22,16 +22,19 @@ export class UsersService {
         await user.save();
         role.users.push(user);
         await role.save()
+        if (user && user.roles) user.roles.forEach(role => { role.users = null })
         return user;
     }
 
     async getAllUsers() {
-        const users = await this.userRepository.find().populate('roles', '-users').exec();
+        let users = await this.userRepository.find().populate('roles', '-users').exec();
+        users.forEach(user => { if (user && user.roles) user.roles.forEach(role => { role.users = null }) })
         return users
     }
 
     async getUserByEmail(email: string) {
-        const user = await this.userRepository.findOne({ email: email }).populate('roles', '-users')
+        let user = await this.userRepository.findOne({ email: email }).populate('roles', '-users')
+        if (user && user.roles) user.roles.forEach(role => { role.users = null })
         return user
     }
 
@@ -47,16 +50,28 @@ export class UsersService {
     }
 
     async findById(id: string): Promise<UserDocument> {
-        return this.userRepository.findById(id).populate('roles', '-users');
+        let user = await this.userRepository.findById(id).populate('roles', '-users');
+        if (user && user.roles) user.roles.forEach(role => { role.users = null })
+        return user
     }
 
     async update(
         id: string,
         updateUserDto: UpdateUserDto,
     ): Promise<User> {
-        return this.userRepository
-            .findByIdAndUpdate(id, updateUserDto, { new: true }).populate('roles', '-users')
-            .exec();
+        let user = null
+        console.log(id)
+        if (typeof id === 'string' && id.match(/^[0-9a-fA-F]{24}$/)) {
+            user = await this.userRepository
+                .findByIdAndUpdate(id, updateUserDto, { new: true })
+                .populate('roles', '-users');
+        } else if (typeof id === 'object') {
+            user = await this.userRepository
+                .findByIdAndUpdate(id, updateUserDto, { new: true })
+                .populate('roles', '-users');
+        }
+        if (user && user.roles) user.roles.forEach(role => { role.users = null })
+        return
     }
 
 }

@@ -1,8 +1,11 @@
 import { LogoAndName } from "@/components/common/Logo";
 import { LoginIcon } from "@/components/icons/Login";
+import { LogoutIcon } from "@/components/icons/Logout";
 import { ButtonCircleUrl } from "@/components/interface/Buttons";
 import { NAV_BAR_PAGE } from "@/configs/pages-url.config";
+import useSession from "@/hooks/useSesion";
 import Link from "next/link";
+import { Authbar } from "../auth/Authbar";
 
 // TODO:ВЫнести в types
 export interface IMenuItem {
@@ -49,10 +52,7 @@ export function Navbar() {
         ))}
       </div>
       <div className="flex flex-row justify-end items-center min-w-[200px]">
-        {/* TODO: Анимацию пинга при простои и при наведении скейл */}
-        <ButtonCircleUrl url={NAV_BAR_PAGE.LOGIN} >
-          <LoginIcon />
-        </ButtonCircleUrl>
+        <Authbar />
       </div>
     </nav >
   )

@@ -17,6 +17,14 @@ export function ButtonCircleUrl({ url, className, children, ...props }: PropsWit
         </Link>
     )
 }
+
+export function ButtonCircle({ className, children, ...props }: PropsWithChildren<IButton>) {
+    return (
+        <button {...props} className={className + " p-3 border-[3px] rounded-full border-white/40 cursor-pointer"}>
+            {children}
+        </button>
+    )
+}
 // TODO:АнимАЦИИ
 export function ButtonGreen({ className, children, ...props }: PropsWithChildren<IButton>) {
     return (
