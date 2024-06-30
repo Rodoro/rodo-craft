@@ -16,7 +16,6 @@ export const authService = {
             data
         )
         if (response.data.accessToken) saveTokensStorage(response.data.accessToken, response.data.refreshToken)
-
         return response
     },
 

@@ -60,7 +60,6 @@ export class UsersService {
         updateUserDto: UpdateUserDto,
     ): Promise<User> {
         let user = null
-        console.log(id)
         if (typeof id === 'string' && id.match(/^[0-9a-fA-F]{24}$/)) {
             user = await this.userRepository
                 .findByIdAndUpdate(id, updateUserDto, { new: true })

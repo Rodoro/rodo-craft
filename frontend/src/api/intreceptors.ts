@@ -4,7 +4,7 @@ import axios, { CreateAxiosDefaults } from "axios";
 
 const options: CreateAxiosDefaults = {
     // TODO:Вынести в env
-    baseURL: 'http://localhost:3001',
+    baseURL: 'http://192.168.1.2:3001',
     headers: {
         'Content-Type': 'application/json'
     },

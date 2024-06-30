@@ -23,9 +23,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
         const requiredRole = configs.findIndex((config) => config.some((route) => request.url.includes(route)));
         if (requiredRole !== -1) {
             const requiredRoleLevel = requiredRole + 1;
-            console.log(requiredRoleLevel)
-            const userRoleLevel = Object.values(Roles).indexOf(userRoles[0]) + 1;
-            //TODO:ФИКСИТЬ типы ролей
+            const userRoleLevel = Object.values(Roles).indexOf(userRoles[0] as Roles) + 1;
 
             if (userRoleLevel < requiredRoleLevel) {
                 return NextResponse.redirect(new URL('/404', request.url))

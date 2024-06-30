@@ -10,10 +10,12 @@ export const metadata: Metadata = {
 
 export default function RegPage() {
     return (
-        <div className="w-full h-screen">
+        <div className="w-full h-full">
             <BgNormal />
-            <div className="absolute flex flex-row h-full w-full items-center justify-center  pt-20 ">
-                <RegForm />
+            <div className="absolute flex flex-row h-full w-full items-start justify-center pt-28 px-[5%] z-10">
+                <div className="flex flex-row h-full w-full items-start justify-center py-[5%]">
+                    <RegForm />
+                </div>
             </div>
         </div>
     )

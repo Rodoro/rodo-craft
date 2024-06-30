@@ -8,14 +8,14 @@ export const getAccessToken = () => {
 
 export const saveTokensStorage = (accessToken: string, refreshToken: string) => {
     Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-        domain: 'localhost',
-        sameSite: 'strict',
-        expires: 1
+        // domain: 'localhost',
+        // sameSite: 'strict',
+        // expires: 1
     })
     Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
-        domain: 'localhost',
-        sameSite: 'strict',
-        expires: 1
+        // domain: 'localhost',
+        // sameSite: 'strict',
+        // expires: 1
     })
 }
 
