@@ -15,10 +15,10 @@ export function Authbar() {
     return (
         <>
             {user ? (
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center justify-end gap-5 w-full">
                     <Link className="font-rubik tracking-wide flex items-center gap-2" href={"/profile"}>
                         {/* TODO: ССЫЛКА бляяяяя */}
-                        {user.username}
+                        <div className="block md:hidden lg:block">{user.username}</div>
                         <ProfileIcon />
                     </Link>
                     <ButtonCircle onClick={() => {authService.logout(); window.location.reload();}} >

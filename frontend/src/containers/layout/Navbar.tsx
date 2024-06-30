@@ -55,10 +55,11 @@ export function Navbar() {
             <ItemMenu onClick={setIsOpen} url={pathname} item={item} key={item.link} />
           ))}
         </div>
-        <div className="hidden lg:flex flex-row justify-end items-center min-w-[200px]">
+        <div className="hidden md:flex flex-row justify-end items-center">
           <Authbar />
         </div>
-        <div className="lg:hidden flex items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+        <div className="md:hidden flex items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          {/* TODO:Анимация открытия и закрытия */}
           <MenuIcon />
         </div>
       </nav >
